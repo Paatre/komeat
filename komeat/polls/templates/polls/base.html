@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -6,6 +8,9 @@
             {% block title %}
             {% endblock %}
         </title>
+        {% block styles %}
+            <link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}" />
+        {% endblock %}
     </head>
     <body>
         {% block content %}
