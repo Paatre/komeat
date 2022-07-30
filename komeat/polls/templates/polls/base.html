@@ -1,4 +1,4 @@
-{% load static %}
+{% load static compress %}
 
 <!DOCTYPE html>
 <html>
@@ -9,7 +9,9 @@
             {% endblock %}
         </title>
         {% block styles %}
+        {% compress css %}
             <link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}" />
+        {% endcompress %}
         {% endblock %}
     </head>
     <body>
