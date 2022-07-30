@@ -1,0 +1,10 @@
+"""
+Local Django settings for komeat project.
+"""
+
+# Django Compressor
+# https://django-compressor.readthedocs.io/en/latest/index.html
+
+COMPRESS_ENABLED = True
+
+COMPRESS_OFFLINE = True
