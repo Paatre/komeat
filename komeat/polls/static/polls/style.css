@@ -1,0 +1,7 @@
+body {
+    background: no-repeat center 15%/cover url("images/background.gif");
+}
+
+li a {
+    color: green;
+}
