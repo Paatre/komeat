@@ -31,6 +31,9 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    # Internal apps
+    'page.apps.PageConfig',
+
     # Built-in Django apps
     'django.contrib.admin',
     'django.contrib.auth',
@@ -41,6 +44,7 @@ INSTALLED_APPS = [
 
     # Third-party apps
     'compressor',
+    'sass_processor',
 ]
 
 MIDDLEWARE = [
@@ -51,6 +55,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
 ]
 
 ROOT_URLCONF = 'komeat.urls'
@@ -58,7 +63,7 @@ ROOT_URLCONF = 'komeat.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -85,8 +90,8 @@ DATABASES = {
 }
 
 
-# Password validation
-# https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
+# Authentication
+# https://docs.djangoproject.com/en/4.0/topics/auth/
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -103,6 +108,10 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+LOGIN_URL = '/login/'
+
+LOGIN_REDIRECT_URL = '/'
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
@@ -115,6 +124,7 @@ USE_I18N = True
 
 USE_TZ = True
 
+LOCALE_PATHS = (BASE_DIR / 'locale',)
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
@@ -122,19 +132,23 @@ USE_TZ = True
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'sass_processor.finders.CssFinder',
     'compressor.finders.CompressorFinder',
 )
 
-STATIC_ROOT = BASE_DIR / 'static'
+SASS_PROCESSOR_ROOT = BASE_DIR / 'staticroot'
 
-STATIC_URL = 'static/'
+STATIC_ROOT = BASE_DIR / 'staticroot'
+
+STATIC_URL = '/static/'
 
 
 # Media files (user-uploaded files)
 # https://docs.djangoproject.com/en/4.0/topics/files/
 
-MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_ROOT = BASE_DIR / 'mediaroot'
 
+MEDIA_URL = '/media/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field

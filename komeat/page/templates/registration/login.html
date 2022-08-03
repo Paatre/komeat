@@ -1,0 +1,28 @@
+{% extends 'page/base.html' %}
+
+{% load i18n %}
+
+{% block title %}{% trans "Log in" %}{% endblock %}
+
+{% block content %}
+    <main class="registration-page login">
+        <section class="login-container">
+            <h1>{% trans 'Log in' %}</h1>
+            <form class="vertical" method="post" action="{% url 'page:login' %}">
+                {% csrf_token %}
+                <div>
+                    <label for="username">{% trans 'Username' %}</label>
+                    <input id="username" name="username" type="text" />
+                </div>
+                <div>
+                    <label for="password">{% trans 'Password' %}</label>
+                    <input id="password" name="password" type="password" />
+                </div>
+                <div>
+                    <input type="submit" value="{% trans 'Log' %}" />
+                </div>
+            </form>
+        </section>
+    </main>
+{% endblock %}
+

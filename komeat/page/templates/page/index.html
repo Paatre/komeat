@@ -1,0 +1,30 @@
+{% extends 'page/base.html' %}
+
+{% load i18n %}
+
+{% block title %}{% trans "Home page" %}{% endblock %}
+
+{% block content %}
+    <main class="home-page">
+        <section>
+            <h1>{% trans 'Members' %}</h1>
+            <div class="grid">
+                {% for member in members %}
+                    <article class="card">
+                        <div class="card__content">
+                            <div class="card__front" style="background-image: url({{member.profile.image.url}}); width: 200px; height: 200px;">
+                                <h2 class="card__title">{{ member.first_name }}</h2>
+                            </div>
+                            <div class="card__back">
+                                <div class="card__description">
+                                    <h3>{{ member.first_name }} {{ member.last_name }}</h3>
+                                    <p>{{ member.email }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                {% endfor %}
+            </div>
+        </section>
+    </main>
+{% endblock %}
